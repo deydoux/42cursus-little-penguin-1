@@ -11,7 +11,6 @@ static int __init hello_start(void)
 	return 0;
 }
 
-
 static void __exit hello_end(void)
 {
 	printk(KERN_INFO "Cleaning up module.\n");
