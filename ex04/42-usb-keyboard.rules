@@ -1,2 +1,2 @@
 # USB Interface > Human Interface Device (Class 03) > Keyboard (Protocol 01)
-ACTION=="add", SUBSYSTEM=="usb", ENV{bInterfaceClass}=="03", ENV{bInterfaceProtocol}=="01", RUN+="/sbin/modprobe ft_usb_keyboard"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceClass}=="03", ATTR{bInterfaceProtocol}=="01", RUN+="/sbin/modprobe ft_usb_keyboard"
