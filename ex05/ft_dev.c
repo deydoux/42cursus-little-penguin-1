@@ -1,5 +1,4 @@
 #include <linux/cdev.h>
-#include <linux/device.h>
 #include <linux/module.h>
 
 #ifndef FT_LOGIN
