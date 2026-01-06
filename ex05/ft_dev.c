@@ -1,6 +1,5 @@
 #include <linux/module.h>
 
-#define DRIVER_MAJOR 42
 #define DRIVER_NAME "fortytwo"
 #define FT_LOGIN "deydoux"
 
@@ -44,7 +43,7 @@ static int major;
 
 static int __init ft_dev_init(void)
 {
-	major = register_chrdev(DRIVER_MAJOR, DRIVER_NAME, &fops);
+	major = register_chrdev(0, DRIVER_NAME, &fops);
 	if (major < 0) {
 		printk(KERN_ALERT "Registering ft_dev failed: %d\n", major);
 		return major;
