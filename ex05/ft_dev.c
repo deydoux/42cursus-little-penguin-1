@@ -7,26 +7,26 @@
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An Hello World kernel module");
 
-static int device_open(struct inode *inode, struct file *file)
+static int ft_dev_open(struct inode *inode, struct file *file)
 {
 	printk(KERN_INFO "Opened ft_dev\n");
 	return 0;
 }
 
-static int device_release(struct inode *inode, struct file *file)
+static int ft_dev_release(struct inode *inode, struct file *file)
 {
 	printk(KERN_INFO "Released ft_dev\n");
 	return 0;
 }
 
-static ssize_t device_read(struct file *filp, char *buf, size_t len,
+static ssize_t ft_dev_read(struct file *filp, char *buf, size_t len,
 	loff_t *off)
 {
 	printk(KERN_INFO "Read ft_dev\n");
 	return 0;
 }
 
-static ssize_t device_write(struct file *filp, const char *buf, size_t len,
+static ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
 	loff_t *off)
 {
 	printk(KERN_INFO "Write ft_dev\n");
@@ -34,10 +34,10 @@ static ssize_t device_write(struct file *filp, const char *buf, size_t len,
 }
 
 static struct file_operations fops = {
-	.open = driver_open,
-	.release = driver_close,
-	.read = driver_read,
-	.write = driver_write
+	.open = ft_dev_open,
+	.release = ft_dev_release,
+	.read = ft_dev_read,
+	.write = ft_dev_write
 };
 
 static int major;
