@@ -6,14 +6,15 @@ RULESDIR = /etc/udev/rules.d
 
 obj-m += $(NAME).o
 
-all: modules
+all $(NAME).ko: modules
+install: modules_install $(RULESDIR)/$(RULES)
+modules_install: $(NAME).ko
 
-clean modules modules_install:
+clean modules modules_install: FORCE
 	$(MAKE) -C $(KDIR) M=$(shell pwd) $@
 
 $(RULESDIR)/$(RULES): $(RULES)
 	cp $< $@
 
-install: modules_install $(RULESDIR)/$(RULES)
-
-.PHONY: all clean modules modules_install install
+FORCE:
+.PHONY: all clean FORCE install modules modules_install
