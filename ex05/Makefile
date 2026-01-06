@@ -3,10 +3,13 @@ KDIR = /lib/modules/$(shell uname -r)/build
 obj-m += $(NAME).o
 
 all $(NAME).ko: modules
-install: modules_install
+modules: $(NAME).c
+modules_install: $(NAME).ko
 
-clean modules modules_install: FORCE
+clean modules modules_install:
 	$(MAKE) -C $(KDIR) M=$(shell pwd) $@
 
-FORCE:
-.PHONY: all clean FORCE install modules modules_install
+install: modules_install
+	modprobe $(NAME)
+
+.PHONY: all clean install modules modules_install

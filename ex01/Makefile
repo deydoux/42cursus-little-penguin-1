@@ -3,6 +3,7 @@ KDIR = /lib/modules/$(shell uname -r)/build
 obj-m += $(NAME).o
 
 all $(NAME).ko: modules
+modules: $(NAME).c
 install: insmod
 uninstall: rmmod
 
