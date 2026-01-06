@@ -7,53 +7,62 @@
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An Hello World kernel module");
 
-static ssize_t driver_read(struct file *File, char *user_buffer, size_t count,
-	loff_t *offs)
+static int device_open(struct inode *inode, struct file *file)
 {
-	printk("driver_read %p %zu\n", user_buffer, count);
-	// user_buffer[0] = 'A';
-	return 1;
-}
-
-static ssize_t driver_write(struct file *File, const char *user_buffer,
-	size_t count, loff_t *offs)
-{
-	printk("driver_write %p %zu\n", user_buffer, count);
-	return 1;
-}
-
-static int driver_open(struct inode *device_file, struct file *instance)
-{
-	printk("read_write_driver - open was called!\n");
+	printk(KERN_INFO "Opened ft_dev\n");
 	return 0;
 }
 
-static int driver_close(struct inode *device_file, struct file *instance)
+static int device_release(struct inode *inode, struct file *file)
 {
-	printk("read_write_driver - close was called!\n");
+	printk(KERN_INFO "Released ft_dev\n");
 	return 0;
 }
 
-static int __init ft_dev_start(void)
+static ssize_t device_read(struct file *filp, char *buf, size_t len,
+	loff_t *off)
 {
-	struct file_operations fops = {
-		.open = driver_open,
-		.release = driver_close,
-		.read = driver_read,
-		.write = driver_write
-	};
-
-	printk(KERN_INFO "Hello World!\n");
-	register_chrdev(DRIVER_MAJOR, DRIVER_NAME, &fops);
-
+	printk(KERN_INFO "Read ft_dev\n");
 	return 0;
 }
 
-static void __exit ft_dev_end(void)
+static ssize_t device_write(struct file *filp, const char *buf, size_t len,
+	loff_t *off)
 {
-	printk(KERN_INFO "Cleaning up module.\n");
-	unregister_chrdev(DRIVER_MAJOR, DRIVER_NAME);
+	printk(KERN_INFO "Write ft_dev\n");
+	return 0;
 }
 
-module_init(ft_dev_start);
-module_exit(ft_dev_end);
+static struct file_operations fops = {
+	.open = driver_open,
+	.release = driver_close,
+	.read = driver_read,
+	.write = driver_write
+};
+
+static int major;
+
+static int __init ft_dev_init(void)
+{
+	major = register_chrdev(DRIVER_MAJOR, DRIVER_NAME, &fops);
+	if (major < 0) {
+		printk(KERN_ALERT "Registering ft_dev failed: %d\n", major);
+		return major;
+	}
+
+	printk(KERN_INFO "Create ft_dev file with \
+'mkmod /dev/" DEVICE_NAME " c %d 0'", major);
+	return 0;
+}
+
+static void __exit ft_dev_exit(void)
+{
+	int ret = unregister_chrdev(major, DRIVER_NAME);
+	if (ret < 0)
+		printk(KERN_ALERT "Error unregistering ft_dev: %d\n", ret);
+	else
+		printk(KERN_INFO "ft_dev unregistered!\n");
+}
+
+module_init(ft_dev_init);
+module_exit(ft_dev_exit);
