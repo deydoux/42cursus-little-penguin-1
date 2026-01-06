@@ -50,7 +50,7 @@ static int __init ft_dev_init(void)
 	}
 
 	printk(KERN_INFO "Create ft_dev file with \
-'mknod /dev/" DEVICE_NAME " c %d 0'", major);
+'mknod /dev/" DEVICE_NAME " c %d 0'\n", major);
 	return 0;
 }
 
