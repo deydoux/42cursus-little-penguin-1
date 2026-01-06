@@ -51,17 +51,14 @@ static int __init ft_dev_init(void)
 	}
 
 	printk(KERN_INFO "Create ft_dev file with \
-'mkmod /dev/" DEVICE_NAME " c %d 0'", major);
+'mknod /dev/" DRIVER_NAME " c %d 0'", major);
 	return 0;
 }
 
 static void __exit ft_dev_exit(void)
 {
-	int ret = unregister_chrdev(major, DRIVER_NAME);
-	if (ret < 0)
-		printk(KERN_ALERT "Error unregistering ft_dev: %d\n", ret);
-	else
-		printk(KERN_INFO "ft_dev unregistered!\n");
+	unregister_chrdev(major, DRIVER_NAME);
+	printk(KERN_INFO "ft_dev unregistered!\n");
 }
 
 module_init(ft_dev_init);

@@ -1,9 +1,14 @@
-obj-m += ft_dev.o
+NAME = ft_dev
 
-all:
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+KDIR = /lib/modules/$(shell uname -r)/build
 
-clean:
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+obj-m += $(NAME).o
 
-.PHONY: all clean
+all: modules
+
+clean modules modules_install:
+	$(MAKE) -C $(KDIR) M=$(shell pwd) $@
+
+install: modules_install
+
+.PHONY: all clean modules modules_install install
