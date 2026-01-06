@@ -1,7 +1,11 @@
 #include <linux/module.h>
 
+#ifndef FT_LOGIN
+# define FT_LOGIN "deydoux\n"
+#endif
+
 #define DEVICE_NAME "fortytwo"
-#define FT_LOGIN "deydoux"
+#define FT_LOGIN_LEN ((sizeof FT_LOGIN) - 1)
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An Hello World kernel module");
@@ -22,7 +26,17 @@ static ssize_t ft_dev_read(struct file *filp, char *buf, size_t len,
 	loff_t *off)
 {
 	printk(KERN_INFO "Read ft_dev\n");
-	return 0;
+
+	ssize_t bytes_read = min(FT_LOGIN_LEN - *off, len);
+	printk(KERN_DEBUG "bytes_read: %zd\n", bytes_read);
+	if (bytes_read <= 0)
+		return 0;
+
+	if (copy_to_user(buf, FT_LOGIN + *off, bytes_read))
+		return -EFAULT;
+
+	*off += bytes_read;
+	return bytes_read;
 }
 
 static ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
