@@ -1,6 +1,6 @@
 #include <linux/module.h>
 
-#define DRIVER_NAME "fortytwo"
+#define DEVICE_NAME "fortytwo"
 #define FT_LOGIN "deydoux"
 
 MODULE_LICENSE("GPL");
@@ -43,20 +43,20 @@ static int major;
 
 static int __init ft_dev_init(void)
 {
-	major = register_chrdev(0, DRIVER_NAME, &fops);
+	major = register_chrdev(0, DEVICE_NAME, &fops);
 	if (major < 0) {
 		printk(KERN_ALERT "Registering ft_dev failed: %d\n", major);
 		return major;
 	}
 
 	printk(KERN_INFO "Create ft_dev file with \
-'mknod /dev/" DRIVER_NAME " c %d 0'", major);
+'mknod /dev/" DEVICE_NAME " c %d 0'", major);
 	return 0;
 }
 
 static void __exit ft_dev_exit(void)
 {
-	unregister_chrdev(major, DRIVER_NAME);
+	unregister_chrdev(major, DEVICE_NAME);
 	printk(KERN_INFO "ft_dev unregistered!\n");
 }
 
