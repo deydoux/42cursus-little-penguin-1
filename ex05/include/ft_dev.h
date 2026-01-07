@@ -10,7 +10,7 @@
 
 # define DEV_NAME "fortytwo"
 # define FT_LOGIN_LEN ((sizeof FT_LOGIN) - 1)
-# define PRINTK_PREFIX "ft_dev: "
+# define PRINT_PREFIX "ft_dev: "
 
 typedef enum ft_dev_state_e
 {

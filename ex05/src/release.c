@@ -2,6 +2,6 @@
 
 int ft_dev_release(struct inode *inode, struct file *file)
 {
-	printk(KERN_DEBUG PRINTK_PREFIX "Released\n");
+	printk(KERN_DEBUG PRINT_PREFIX "Released\n");
 	return 0;
 }
