@@ -1,4 +1,3 @@
-#include <linux/cdev.h>
 #include "ft_dev.h"
 
 void ft_dev_clean(ft_dev_state_t state)

@@ -1,4 +1,3 @@
-#include <linux/cdev.h>
 #include "ft_dev.h"
 
 MODULE_LICENSE("GPL");
