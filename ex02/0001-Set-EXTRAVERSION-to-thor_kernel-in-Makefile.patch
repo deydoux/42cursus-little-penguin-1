@@ -20,8 +20,8 @@ index 6f0e72ff4d0c..79c3bf2c0e79 100644
 -EXTRAVERSION =
 +EXTRAVERSION = -thor_kernel
  NAME = Baby Opossum Posse
- 
+
  # *DOCUMENTATION*
--- 
+--
 2.50.1
 
