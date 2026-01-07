@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0+
 #include <linux/miscdevice.h>
 #include "ft_dev.h"
 
@@ -20,20 +21,20 @@ static struct miscdevice misc_dev = {
 static int __init ft_dev_init(void)
 {
 	int ret = misc_register(&misc_dev);
+
 	if (ret) {
-		printk(KERN_ALERT PRINT_PREFIX \
-			"Failed to register misc device\n");
+		pr_alert(PRINT_PREFIX "Failed to register misc device\n");
 		return ret;
 	}
 
-	printk(KERN_INFO PRINT_PREFIX "Registered\n");
+	pr_info(PRINT_PREFIX "Registered\n");
 	return 0;
 }
 
 static void __exit ft_dev_exit(void)
 {
 	misc_deregister(&misc_dev);
-	printk(KERN_INFO PRINT_PREFIX "Unregistered\n");
+	pr_info(PRINT_PREFIX "Unregistered\n");
 }
 
 module_init(ft_dev_init);
