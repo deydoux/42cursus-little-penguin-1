@@ -15,7 +15,7 @@ ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
 	if (bytes <= 0)
 		return 0;
 
-	if (strncmp(buf, FT_LOGIN + *off, bytes) && buf[bytes] != '\n') {
+	if (strncmp(buf, FT_LOGIN + *off, bytes) && buf[bytes - 1] != '\n') {
 		data->invalid_write = true;
 		return -EINVAL;
 	}
