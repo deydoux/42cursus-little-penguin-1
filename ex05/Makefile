@@ -4,7 +4,6 @@ KDIR = /lib/modules/$(shell uname -r)/build
 SRC_DIR = src
 INC_DIR = include
 SRCS = \
-	clean.c \
 	ft_dev.c \
 	open.c \
 	read.c \
