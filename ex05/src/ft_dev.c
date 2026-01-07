@@ -11,7 +11,7 @@ static const struct file_operations fops = {
 	.write = ft_dev_write,
 };
 
-static struct miscdevice misc = {
+static struct miscdevice misc_dev = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = DEV_NAME,
 	.fops = &fops
@@ -19,9 +19,10 @@ static struct miscdevice misc = {
 
 static int __init ft_dev_init(void)
 {
-	int ret = misc_register(&misc);
+	int ret = misc_register(&misc_dev);
 	if (ret) {
-		printk(KERN_ALERT PRINT_PREFIX "Failed to register misc device\n");
+		printk(KERN_ALERT PRINT_PREFIX \
+			"Failed to register misc device\n");
 		return ret;
 	}
 
@@ -31,7 +32,7 @@ static int __init ft_dev_init(void)
 
 static void __exit ft_dev_exit(void)
 {
-	misc_deregister(&misc);
+	misc_deregister(&misc_dev);
 	printk(KERN_INFO PRINT_PREFIX "Unregistered\n");
 }
 
