@@ -3,6 +3,6 @@
 
 int ft_dev_open(struct inode *inode, struct file *file)
 {
-	pr_debug(PRINT_PREFIX "Opened\n");
+	pr_info(PR_PREFIX "Opened\n");
 	return 0;
 }

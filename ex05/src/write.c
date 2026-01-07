@@ -4,6 +4,6 @@
 ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
 		     loff_t *off)
 {
-	pr_debug(PRINT_PREFIX "Write\n");
+	pr_info(PR_PREFIX "Write\n");
 	return 0;
 }

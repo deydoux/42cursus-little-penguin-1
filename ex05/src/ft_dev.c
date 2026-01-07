@@ -23,18 +23,18 @@ static int __init ft_dev_init(void)
 	int ret = misc_register(&misc_dev);
 
 	if (ret) {
-		pr_alert(PRINT_PREFIX "Failed to register misc device\n");
+		pr_alert(PR_PREFIX "Failed to register misc device\n");
 		return ret;
 	}
 
-	pr_info(PRINT_PREFIX "Registered\n");
+	pr_info(PR_PREFIX "Registered\n");
 	return 0;
 }
 
 static void __exit ft_dev_exit(void)
 {
 	misc_deregister(&misc_dev);
-	pr_info(PRINT_PREFIX "Unregistered\n");
+	pr_info(PR_PREFIX "Unregistered\n");
 }
 
 module_init(ft_dev_init);

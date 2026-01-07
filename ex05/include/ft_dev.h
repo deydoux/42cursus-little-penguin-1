@@ -10,7 +10,7 @@
 
 # define DEV_NAME "fortytwo"
 # define FT_LOGIN_LEN (sizeof(FT_LOGIN) - 1)
-# define PRINT_PREFIX "ft_dev: "
+# define PR_PREFIX "ft_dev: "
 
 int ft_dev_open(struct inode *inode, struct file *file);
 ssize_t ft_dev_read(struct file *filp, char *buf, size_t len, loff_t *off);
