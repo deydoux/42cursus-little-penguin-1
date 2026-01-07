@@ -16,10 +16,9 @@ obj-m += $(NAME).o
 $(NAME)-objs += $(addprefix $(SRC_DIR)/,$(SRCS:.c=.o))
 
 all $(NAME).ko: modules
+
 modules: $(SRC_DIR) $(INC_DIR)
 modules_install: $(NAME).ko
-reinstall: uninstall install
-
 clean modules modules_install:
 	$(MAKE) -C $(KDIR) M=$(shell pwd) $@
 
@@ -28,5 +27,7 @@ install: modules_install
 
 uninstall:
 	modprobe -r $(NAME)
+
+reinstall: uninstall install
 
 .PHONY: all clean install modules modules_install reinstall uninstall

@@ -3,15 +3,16 @@ KDIR = /lib/modules/$(shell uname -r)/build
 obj-m += $(NAME).o
 
 all $(NAME).ko: modules
-modules: $(NAME).c
-install: insmod
-uninstall: rmmod
 
+modules: $(NAME).c
 clean modules: FORCE
 	$(MAKE) -C $(KDIR) M=$(shell pwd) $@
 
 insmod rmmod: $(NAME).ko
 	$@ $<
+
+install: insmod
+uninstall: rmmod
 
 FORCE:
 .PHONY: all clean FORCE insmod install modules rmmod uninstall
