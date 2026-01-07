@@ -4,7 +4,12 @@ KDIR = /lib/modules/$(shell uname -r)/build
 SRC_DIR = src
 INC_DIR = include
 SRCS = \
-	$(NAME).c
+	clean.c \
+	ft_dev.c \
+	open.c \
+	read.c \
+	release.c \
+	write.c
 
 ccflags-y += -I$(INC_DIR)
 obj-m += $(NAME).o

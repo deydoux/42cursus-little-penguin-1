@@ -1,67 +1,13 @@
 #include <linux/cdev.h>
-#include <linux/module.h>
-
 #include "ft_dev.h"
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An Hello World kernel module");
 
-static int ft_dev_open(struct inode *inode, struct file *file)
-{
-	printk(KERN_DEBUG PRINTK_PREFIX "Opened\n");
-	return 0;
-}
-
-static int ft_dev_release(struct inode *inode, struct file *file)
-{
-	printk(KERN_DEBUG PRINTK_PREFIX "Released\n");
-	return 0;
-}
-
-static ssize_t ft_dev_read(struct file *filp, char *buf, size_t len,
-	loff_t *off)
-{
-	ssize_t bytes_read = min(FT_LOGIN_LEN - *off, len);
-	printk(KERN_DEBUG PRINTK_PREFIX "Read %zd with offset %lld\n",
-		bytes_read, *off);
-	if (bytes_read <= 0)
-		return 0;
-
-	if (copy_to_user(buf, FT_LOGIN + *off, bytes_read))
-		return -EFAULT;
-
-	*off += bytes_read;
-	return bytes_read;
-}
-
-static ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
-	loff_t *off)
-{
-	printk(KERN_DEBUG PRINTK_PREFIX "Write\n");
-	return 0;
-}
-
-static dev_t dev;
-static struct cdev cdev;
-static struct class *class;
-static t_ft_dev_state state = FT_DEV_INIT;
-
-static void ft_dev_clean(t_ft_dev_state state)
-{
-	switch (state) {
-		case FT_DEV_DEVICE_CREATE:
-			device_destroy(class, dev);
-		case FT_DEV_CLASS_CREATE:
-			class_destroy(class);
-		case FT_DEV_CDEV_ADD:
-		case FT_DEV_CDEV_INIT:
-			cdev_del(&cdev);
-		case FT_DEV_ALLOC_CHRDEV_REGION:
-			unregister_chrdev_region(dev, 1);
-		case FT_DEV_INIT:
-			break;
-	}
-}
+dev_t dev;
+struct cdev cdev;
+struct class *class;
+ft_dev_state_t state = FT_DEV_INIT;
 
 static int __init ft_dev_init(void)
 {
