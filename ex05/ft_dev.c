@@ -62,13 +62,6 @@ static struct cdev cdev;
 static struct class *class;
 static t_ft_dev_state state = FT_DEV_INIT;
 
-static struct file_operations fops = {
-	.open = ft_dev_open,
-	.release = ft_dev_release,
-	.read = ft_dev_read,
-	.write = ft_dev_write
-};
-
 static void ft_dev_clean(t_ft_dev_state state)
 {
 	switch (state) {
@@ -98,6 +91,13 @@ static int __init ft_dev_init(void)
 		return ret;
 	}
 	state = FT_DEV_DEVICE_CREATE;
+
+	static struct file_operations fops = {
+		.open = ft_dev_open,
+		.release = ft_dev_release,
+		.read = ft_dev_read,
+		.write = ft_dev_write
+	};
 
 	cdev_init(&cdev, &fops);
 	state = FT_DEV_CDEV_INIT;
