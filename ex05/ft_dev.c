@@ -5,7 +5,7 @@
 # define FT_LOGIN "deydoux\n"
 #endif
 
-#define DEVICE_NAME "fortytwo"
+#define DEV_NAME "fortytwo"
 #define FT_LOGIN_LEN ((sizeof FT_LOGIN) - 1)
 #define PRINTK_PREFIX "ft_dev: "
 
@@ -83,7 +83,7 @@ static int __init ft_dev_init(void)
 {
 	int ret;
 
-	ret = alloc_chrdev_region(&dev, 0, 1, DEVICE_NAME);
+	ret = alloc_chrdev_region(&dev, 0, 1, DEV_NAME);
 	if (ret < 0) {
 		printk(KERN_ALERT PRINTK_PREFIX \
 			"Failed to allocate char device region\n");
@@ -110,7 +110,7 @@ static int __init ft_dev_init(void)
 	}
 	state = FT_DEV_CDEV_ADD;
 
-	class = class_create(DEVICE_NAME);
+	class = class_create(DEV_NAME);
 	if (IS_ERR(class)) {
 		printk(KERN_ALERT PRINTK_PREFIX "Failed to create class\n");
 		ft_dev_clean(state);
@@ -118,10 +118,12 @@ static int __init ft_dev_init(void)
 	}
 	state = FT_DEV_CLASS_CREATE;
 
-	if (IS_ERR(device_create(class, NULL, dev, NULL, DEVICE_NAME))) {
+	struct device *dev_node;
+	dev_node = device_create(class, NULL, dev, NULL, DEV_NAME);
+	if (IS_ERR(dev_node)) {
 		printk(KERN_ALERT PRINTK_PREFIX "Failed to create device\n");
 		ft_dev_clean(state);
-		return ret;
+		return PTR_ERR(dev_node);
 	}
 	state = FT_DEV_DEVICE_CREATE;
 
