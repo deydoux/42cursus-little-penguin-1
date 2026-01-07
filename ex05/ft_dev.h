@@ -1,5 +1,5 @@
-#ifndef FT_DEV_H
-# define FT_DEV_H
+#ifndef __FT_DEV_H__
+# define __FT_DEV_H__
 
 # ifndef FT_LOGIN
 #  define FT_LOGIN "deydoux\n"
@@ -19,4 +19,4 @@ typedef enum e_ft_dev_state
 	FT_DEV_DEVICE_CREATE
 }	t_ft_dev_state;
 
-#endif /* FT_DEV_H */
+#endif /* __FT_DEV_H__ */
