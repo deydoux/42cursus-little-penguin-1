@@ -5,7 +5,8 @@ ssize_t dev_foo_read(struct file *filp, char *buf, size_t len, loff_t *off)
 {
 	// ssize_t bytes = min(FT_LOGIN_LEN - *off, len);
 
-	pr_info(PR_PREFIX "Read %zd with offset %lld\n", bytes, *off);
+	pr_info(PR_PREFIX "Read %zu with offset %lld\n", len, *off);
+	// pr_info(PR_PREFIX "Read %zd with offset %lld\n", bytes, *off);
 	// if (bytes <= 0)
 	// 	return 0;
 
