@@ -15,9 +15,23 @@ ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
 	if (bytes <= 0)
 		return 0;
 
-	if (strncmp(buf, FT_LOGIN + *off, bytes) && buf[bytes - 1] != '\n') {
+	if (strncmp(str, FT_LOGIN + *off, bytes) && str[bytes - 1] != '\n') {
 		data->invalid_write = true;
 		return -EINVAL;
+	}
+
+	char buf_copy[FT_LOGIN_LEN];
+	char *login_off = FT_LOGIN;
+
+	copy_from_user(buf_copy, buf, bytes);
+	login_off += *off;
+
+	for (size_t i = 0; i < bytes; i++) {
+		if (buf_copy[i] != login_off[i] &&
+		    !(buf_copy[i] == 0 && login_off[i] == '\n')) {
+			data->invalid_write = true;
+			return -EINVAL;
+		}
 	}
 
 	*off += bytes;
