@@ -15,11 +15,11 @@ static const struct file_operations fops = {
 static struct miscdevice misc_dev = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = DEV_NAME,
-	.mode = 0666,
+	.mode = DEV_MODE,
 	.fops = &fops
 };
 
-static int __init fortytwo_init(void)
+static int __init ft_dev_init(void)
 {
 	int ret = misc_register(&misc_dev);
 

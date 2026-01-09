@@ -8,6 +8,7 @@
 #  define FT_LOGIN "deydoux"
 # endif
 
+# define DEV_MODE S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH
 # define DEV_NAME "fortytwo"
 # define FT_LOGIN_LEN sizeof(FT_LOGIN)
 # define PR_PREFIX "ft_dev: "
