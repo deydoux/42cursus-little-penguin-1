@@ -10,6 +10,12 @@
 # undef PR_PREFIX
 # define PR_PREFIX BASE_PR_PREFIX DEV_NAME ": "
 
+# define ULLONG_STRLEN 20
+
+struct dev_jiffies_data {
+	char jiffies_str[ULLONG_STRLEN + 1];
+};
+
 int dev_jiffies_open(struct inode *inode, struct file *filp);
 ssize_t dev_jiffies_read(struct file *filp, char *buf, size_t len, loff_t *off);
 int dev_jiffies_release(struct inode *inode, struct file *filp);

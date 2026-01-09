@@ -18,6 +18,6 @@ int dev_id_init(struct dentry *parent)
 		return -ENOMEM;
 	}
 
-	pr_info(PR_PREFIX "Registered");
+	pr_info(PR_PREFIX "Registered\n");
 	return 0;
 }
