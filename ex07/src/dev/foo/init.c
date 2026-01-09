@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0+
 #include "dev/foo.h"
 
+char dev_foo_data[];
+size_t dev_foo_len = 0;
 struct mutex dev_foo_lock;
 
 static const struct file_operations fops = {

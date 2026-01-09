@@ -16,6 +16,8 @@ int dev_foo_release(struct inode *inode, struct file *filp);
 ssize_t dev_foo_write(struct file *filp, const char *buf, size_t len,
 		      loff_t *off);
 
+extern char dev_foo_data[PAGE_SIZE];
+extern size_t dev_foo_len;
 extern struct mutex dev_foo_lock;
 
 #endif /* __DEV__FOO_H__ */
