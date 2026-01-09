@@ -2,7 +2,9 @@
 #include "dev/foo.h"
 
 char dev_foo_data[];
-size_t dev_foo_len = 0;
+size_t dev_foo_len;
+
+// Mutex to protect access to dev_foo_data and dev_foo_len
 struct mutex dev_foo_lock;
 
 static const struct file_operations fops = {
@@ -17,6 +19,7 @@ int dev_foo_init(struct dentry *parent)
 	struct dentry *entry = debugfs_create_file(DEV_NAME, DEV_MODE, parent,
 		NULL, &fops);
 
+	dev_foo_len = 0;
 	mutex_init(&dev_foo_lock);
 
 	if (!entry) {
