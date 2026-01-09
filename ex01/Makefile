@@ -13,6 +13,7 @@ insmod rmmod: $(NAME).ko
 
 install: insmod
 uninstall: rmmod
+reinstall: uninstall install
 
 FORCE:
-.PHONY: all clean FORCE insmod install modules rmmod uninstall
+.PHONY: all clean FORCE insmod install modules reinstall rmmod uninstall
