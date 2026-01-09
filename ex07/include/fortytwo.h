@@ -9,6 +9,7 @@
 # define BASE_PR_PREFIX DIR_NAME ": "
 # define PR_PREFIX BASE_PR_PREFIX
 
+int dev_foo_init(struct dentry *parent);
 int dev_id_init(struct dentry *parent);
 int dev_jiffies_init(struct dentry *parent);
 
