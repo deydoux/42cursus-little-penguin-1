@@ -20,6 +20,10 @@ static int __init fortytwo_init(void)
 	if (ret)
 		return ret;
 
+	ret = dev_jiffies_init(dir);
+	if (ret)
+		return ret;
+
 	pr_info(PR_PREFIX "Registered\n");
 	return 0;
 }

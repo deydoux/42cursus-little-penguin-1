@@ -4,13 +4,16 @@
 
 # include "fortytwo.h"
 
+# define DEV_MODE 0666
+# define DEV_NAME "id"
+
 # ifndef FT_LOGIN
 #  define FT_LOGIN "deydoux"
 # endif
-
-# define DEV_MODE 0666
-# define DEV_NAME "id"
 # define FT_LOGIN_LEN sizeof(FT_LOGIN)
+
+# undef PR_PREFIX
+# define PR_PREFIX BASE_PR_PREFIX DEV_NAME ": "
 
 struct dev_id_data {
 	bool invalid_write;

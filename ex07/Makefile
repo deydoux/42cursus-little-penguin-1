@@ -9,6 +9,10 @@ SRCS = \
 	dev/id/read.c \
 	dev/id/release.c \
 	dev/id/write.c \
+	dev/jiffies/init.c \
+	dev/jiffies/open.c \
+	dev/jiffies/read.c \
+	dev/jiffies/release.c \
 	fortytwo.c
 
 ccflags-y += -I$(INC_DIR)
