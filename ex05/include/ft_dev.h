@@ -2,7 +2,7 @@
 #ifndef __FT_DEV_H__
 # define __FT_DEV_H__
 
-#include <linux/module.h>
+# include <linux/module.h>
 
 # ifndef FT_LOGIN
 #  define FT_LOGIN "deydoux"
