@@ -12,6 +12,7 @@ int main(void)
 
 	while (bytes) {
 		printf("bytes: %zd, c: %d '%c'\n", bytes, c, c);
+		sleep(1);
 		bytes = read(fd, &c, 1);
 	}
 
