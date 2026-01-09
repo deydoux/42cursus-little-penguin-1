@@ -15,6 +15,7 @@ static const struct file_operations fops = {
 static struct miscdevice misc_dev = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = DEV_NAME,
+	.mode = 0666,
 	.fops = &fops
 };
 
