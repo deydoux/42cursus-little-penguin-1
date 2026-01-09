@@ -13,6 +13,7 @@ int main(void)
 		ssize_t bytes = write(fd, &ft_login[i], 1);
 
 		printf("bytes: %zu errno: %d\n", bytes, errno);
+		sleep(1);
 	}
 
 	close(fd);
