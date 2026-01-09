@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0+
-#include "ft_dev.h"
+#include "dev/id.h"
 
-ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,
+ssize_t dev_id_write(struct file *filp, const char *buf, size_t len,
 		     loff_t *off)
 {
-	struct ft_dev_data *data = filp->private_data;
+	struct dev_id_data *data = filp->private_data;
 
 	if (data->invalid_write)
 		return -EINVAL;

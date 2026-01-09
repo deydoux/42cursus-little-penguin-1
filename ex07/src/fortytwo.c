@@ -16,7 +16,7 @@ static int __init fortytwo_init(void)
 		return -ENOMEM;
 	}
 
-	ret = ft_dev_init(dir);
+	ret = dev_id_init(dir);
 	if (ret)
 		return ret;
 

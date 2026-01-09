@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0+
-#include "ft_dev.h"
+#include "dev/id.h"
 
-ssize_t ft_dev_read(struct file *filp, char *buf, size_t len, loff_t *off)
+ssize_t dev_id_read(struct file *filp, char *buf, size_t len, loff_t *off)
 {
 	ssize_t bytes = min(FT_LOGIN_LEN - *off, len);
 

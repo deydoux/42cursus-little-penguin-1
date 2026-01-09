@@ -8,6 +8,6 @@
 # define DIR_NAME "fortytwo"
 # define PR_PREFIX DIR_NAME ": "
 
-int ft_dev_init(struct dentry *parent);
+int dev_id_init(struct dentry *parent);
 
 #endif /* __FORTYTWO_H__ */

@@ -4,12 +4,12 @@ KDIR = /lib/modules/$(shell uname -r)/build
 SRC_DIR = src
 INC_DIR = include
 SRCS = \
-	fortytwo.c \
-	ft_dev/init.c \
-	ft_dev/open.c \
-	ft_dev/read.c \
-	ft_dev/release.c \
-	ft_dev/write.c
+	dev/id/init.c \
+	dev/id/open.c \
+	dev/id/read.c \
+	dev/id/release.c \
+	dev/id/write.c \
+	fortytwo.c
 
 ccflags-y += -I$(INC_DIR)
 obj-m += $(NAME).o

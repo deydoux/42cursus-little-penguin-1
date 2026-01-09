@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0+
-#include "ft_dev.h"
+#include "dev/id.h"
 
-int ft_dev_open(struct inode *inode, struct file *filp)
+int dev_id_open(struct inode *inode, struct file *filp)
 {
-	struct ft_dev_data *data = kzalloc(sizeof(*data), GFP_KERNEL);
+	struct dev_id_data *data = kzalloc(sizeof(*data), GFP_KERNEL);
 
 	if (!data)
 		return -ENOMEM;

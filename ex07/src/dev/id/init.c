@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-2.0+
-#include "ft_dev.h"
+#include "dev/id.h"
 
 static const struct file_operations fops = {
-	.open = ft_dev_open,
-	.release = ft_dev_release,
-	.read = ft_dev_read,
-	.write = ft_dev_write,
+	.open = dev_id_open,
+	.release = dev_id_release,
+	.read = dev_id_read,
+	.write = dev_id_write,
 };
 
-int ft_dev_init(struct dentry *parent)
+int dev_id_init(struct dentry *parent)
 {
 	struct dentry *entry = debugfs_create_file(DEV_NAME, DEV_MODE, parent,
 		NULL, &fops);
@@ -18,6 +18,5 @@ int ft_dev_init(struct dentry *parent)
 		return -ENOMEM;
 	}
 
-	pr_info(PR_PREFIX "id registered\n");
 	return 0;
 }
