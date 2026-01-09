@@ -18,4 +18,10 @@ $(RULESDIR)/$(RULES): $(RULES)
 
 install: modules_install $(RULESDIR)/$(RULES)
 
-.PHONY: all clean install modules modules_install
+uninstall:
+	modprobe -r $(NAME) || true
+	rm -f $(RULESDIR)/$(RULES)
+
+reinstall: uninstall install
+
+.PHONY: all clean install modules modules_install reinstall uninstall
