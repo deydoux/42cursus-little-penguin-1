@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: GPL-2.0+
-#include <linux/debugfs.h>
 #include "fortytwo.h"
 
 MODULE_LICENSE("GPL");
@@ -9,11 +8,17 @@ static struct dentry *dir;
 
 static int __init fortytwo_init(void)
 {
+	int ret;
+
 	dir = debugfs_create_dir(DIR_NAME, NULL);
 	if (!dir) {
 		pr_alert(PR_PREFIX "Failed to create debugfs dir\n");
 		return -ENOMEM;
 	}
+
+	ret = ft_dev_init(dir);
+	if (ret)
+		return ret;
 
 	pr_info(PR_PREFIX "Registered\n");
 	return 0;
