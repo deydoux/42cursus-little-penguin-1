@@ -19,7 +19,7 @@ static struct miscdevice misc_dev = {
 	.fops = &fops
 };
 
-static int __init ft_dev_init(void)
+static int __init fortytwo_init(void)
 {
 	int ret = misc_register(&misc_dev);
 
