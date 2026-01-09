@@ -4,8 +4,6 @@
 ssize_t dev_foo_write(struct file *filp, const char *buf, size_t len,
 		      loff_t *off)
 {
-	struct dev_foo_data *data = filp->private_data;
-
 	pr_info(PR_PREFIX "Write\n");
 	return 0;
 }

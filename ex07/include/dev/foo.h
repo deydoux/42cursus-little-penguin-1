@@ -10,8 +10,6 @@
 # undef PR_PREFIX
 # define PR_PREFIX BASE_PR_PREFIX DEV_NAME ": "
 
-struct dev_foo_data {};
-
 int dev_foo_open(struct inode *inode, struct file *filp);
 ssize_t dev_foo_read(struct file *filp, char *buf, size_t len, loff_t *off);
 int dev_foo_release(struct inode *inode, struct file *filp);
