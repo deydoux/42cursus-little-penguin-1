@@ -3,7 +3,7 @@
 
 int dev_foo_open(struct inode *inode, struct file *filp)
 {
-	struct dev_foo_data *data = kalloc(sizeof(*data), GFP_KERNEL);
+	struct dev_foo_data *data = kmalloc(sizeof(*data), GFP_KERNEL);
 
 	if (!data)
 		return -ENOMEM;

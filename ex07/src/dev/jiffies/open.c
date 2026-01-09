@@ -3,7 +3,7 @@
 
 int dev_jiffies_open(struct inode *inode, struct file *filp)
 {
-	struct dev_jiffies_data *data = kalloc(sizeof(*data), GFP_KERNEL);
+	struct dev_jiffies_data *data = kmalloc(sizeof(*data), GFP_KERNEL);
 
 	if (!data)
 		return -ENOMEM;
