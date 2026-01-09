@@ -25,7 +25,7 @@ install: modules_install
 	modprobe $(NAME)
 
 uninstall:
-	modprobe -r $(NAME)
+	modprobe -r $(NAME) || true
 
 reinstall: uninstall install
 
