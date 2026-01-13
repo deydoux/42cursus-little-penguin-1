@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include <linux/miscdevice.h>
 #include "ft_dev.h"
 

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "dev/id.h"
 
 static const struct file_operations fops = {

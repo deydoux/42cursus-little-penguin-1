@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "dev/id.h"
 
 int dev_id_open(struct inode *inode, struct file *filp)

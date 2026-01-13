@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "dev/jiffies.h"
 
 int dev_jiffies_open(struct inode *inode, struct file *filp)

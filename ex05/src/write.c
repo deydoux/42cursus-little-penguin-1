@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "ft_dev.h"
 
 ssize_t ft_dev_write(struct file *filp, const char *buf, size_t len,

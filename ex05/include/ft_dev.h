@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-2.0+ */
+/* SPDX-License-Identifier: GPL-3.0+ */
 #ifndef __FT_DEV_H__
 # define __FT_DEV_H__
 

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "dev/foo.h"
 
 ssize_t dev_foo_read(struct file *filp, char *buf, size_t len, loff_t *off)

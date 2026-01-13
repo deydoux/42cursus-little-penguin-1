@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0+
+// SPDX-License-Identifier: GPL-3.0+
 #include "dev/id.h"
 
 ssize_t dev_id_write(struct file *filp, const char *buf, size_t len,

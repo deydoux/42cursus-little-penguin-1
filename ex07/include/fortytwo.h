@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-2.0+ */
+/* SPDX-License-Identifier: GPL-3.0+ */
 #ifndef __FORTYTWO_H__
 # define __FORTYTWO_H__
 
