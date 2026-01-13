@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0+
 #include "mymounts.h"
+#include <linux/proc_fs.h>
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("An procfs kernel module");
@@ -25,6 +26,7 @@ static int __init mymounts_init(void)
 
 static void __exit mymounts_exit(void)
 {
+	remove_proc_entry(PROC_NAME, NULL);
 	pr_info(PR_PREFIX "Unregistered\n");
 }
 

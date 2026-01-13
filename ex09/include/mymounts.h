@@ -2,7 +2,6 @@
 #ifndef __MYMOUNTS_H__
 # define __MYMOUNTS_H__
 
-#include <linux/proc_fs.h>
 #include <linux/module.h>
 
 # define PROC_NAME "mymounts"
