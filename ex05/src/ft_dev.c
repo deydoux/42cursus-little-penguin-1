@@ -3,7 +3,7 @@
 #include "ft_dev.h"
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("An Hello World kernel module");
+MODULE_DESCRIPTION("An misc device kernel module");
 
 static const struct file_operations fops = {
 	.open = ft_dev_open,

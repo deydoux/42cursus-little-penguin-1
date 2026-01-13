@@ -2,7 +2,7 @@
 #include "fortytwo.h"
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("An Hello World kernel module");
+MODULE_DESCRIPTION("An debugfs kernel module");
 
 static struct dentry *dir;
 
