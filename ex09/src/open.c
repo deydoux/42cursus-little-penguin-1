@@ -1,0 +1,14 @@
+// SPDX-License-Identifier: GPL-3.0+
+#include "mymounts.h"
+
+int mymounts_open(struct inode *inode, struct file *filp)
+{
+	// struct dev_id_data *data = kzalloc(sizeof(*data), GFP_KERNEL);
+
+	// if (!data)
+	// 	return -ENOMEM;
+
+	// filp->private_data = data;
+	pr_info(PR_PREFIX "Opened\n");
+	return 0;
+}
