@@ -34,6 +34,7 @@ static int __init fortytwo_init(void)
 
 static void __exit fortytwo_exit(void)
 {
+	dev_foo_exit();
 	debugfs_remove_recursive(dir);
 	pr_info(PR_PREFIX "Unregistered\n");
 }

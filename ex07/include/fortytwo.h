@@ -12,5 +12,6 @@
 int dev_foo_init(struct dentry *parent);
 int dev_id_init(struct dentry *parent);
 int dev_jiffies_init(struct dentry *parent);
+void dev_foo_exit(void);
 
 #endif /* __FORTYTWO_H__ */
