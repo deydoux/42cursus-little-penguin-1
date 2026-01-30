@@ -8,6 +8,11 @@
 # define PROC_MODE 0444
 # define PR_PREFIX PROC_NAME ": "
 
+struct mymounts_data {
+	char *buf;
+	size_t len;
+};
+
 int mymounts_open(struct inode *inode, struct file *filp);
 ssize_t mymounts_read(struct file *filp, char *buf, size_t len, loff_t *off);
 int mymounts_release(struct inode *inode, struct file *filp);

@@ -3,7 +3,10 @@
 
 int mymounts_release(struct inode *inode, struct file *filp)
 {
-	// kfree(filp->private_data);
+	struct mymounts_data *data = filp->private_data;
+
+	kfree(data->buf);
+	kfree(data);
 	pr_info(PR_PREFIX "Released\n");
 	return 0;
 }
