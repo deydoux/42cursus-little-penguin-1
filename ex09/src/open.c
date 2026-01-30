@@ -10,6 +10,7 @@ static char *mymounts_strjoin(const char *src, const char *dev, char *path)
 		return kasprintf(GFP_KERNEL, "%s %s\n", dev, path);
 
 	char *ret = kasprintf(GFP_KERNEL, "%s%s %s\n", src, dev, path);
+
 	kfree(src);
 
 	return ret;
@@ -18,12 +19,15 @@ static char *mymounts_strjoin(const char *src, const char *dev, char *path)
 static int mymounts_format(char **data)
 {
 	struct mnt_namespace *ns = current->nsproxy->mnt_ns;
+
 	if (!ns)
 		return -EAGAIN;
 
 	struct rb_root mounts = ns->mounts;
+
 	for (struct rb_node *node = rb_first(&mounts); node; node = rb_next(node)) {
 		struct mount *mnt = rb_entry(node, struct mount, mnt_node);
+
 		if (mnt->mnt_parent == mnt)
 			continue;
 
@@ -34,10 +38,12 @@ static int mymounts_format(char **data)
 		};
 
 		char *buf = kmalloc(PATH_MAX, GFP_KERNEL);
+
 		if (!buf)
 			return -ENOMEM;
 
 		char *mnt_path = d_path(&path, buf, PATH_MAX);
+
 		if (IS_ERR(mnt_path)) {
 			kfree(buf);
 			return PTR_ERR(mnt_path);
@@ -55,13 +61,15 @@ static int mymounts_format(char **data)
 
 int mymounts_open(struct inode *inode, struct file *filp)
 {
-	struct mymounts_data *data = kmalloc(sizeof(struct mymounts_data), GFP_KERNEL);
+	struct mymounts_data *data = kmalloc(sizeof(*data), GFP_KERNEL);
+
 	if (!data)
 		return -ENOMEM;
 
 	data->buf = NULL;
 
 	int ret = mymounts_format(&data->buf);
+
 	if (ret < 0) {
 		kfree(data->buf);
 		kfree(data);
