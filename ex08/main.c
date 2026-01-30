@@ -24,6 +24,7 @@ static const struct file_operations myfd_fops = {
 static struct miscdevice myfd_device = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = "reverse",
+	.mode = 0666,
 	.fops = &myfd_fops
 };
 
@@ -34,12 +35,13 @@ static int __init myfd_init(void)
 {
 	int retval;
 
-	retval = misc_register(&(*(&(myfd_device))));
-	return 1;
+	retval = misc_register(&myfd_device);
+	return retval;
 }
 
 static void __exit myfd_cleanup(void)
 {
+	misc_deregister(&myfd_device);
 }
 
 ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
@@ -48,9 +50,10 @@ ssize_t myfd_read(struct file *fp, char __user *user, size_t size, loff_t *offs)
 	char *tmp2;
 
 	// Malloc like a boss
-	tmp2 = kmalloc(sizeof(char) * PAGE_SIZE * 2, GFP_KERNEL);
+	size_t len = strlen(str);
+	tmp2 = kmalloc(len + 1, GFP_KERNEL);
 	tmp = tmp2;
-	for (t = strlen(str) - 1, i = 0; t >= 0; t--, i++)
+	for (t = len - 1, i = 0; t >= 0; t--, i++)
 		tmp[i] = str[t];
 	tmp[i] = 0x0;
 	return simple_read_from_buffer(user, size, offs, tmp, i);
