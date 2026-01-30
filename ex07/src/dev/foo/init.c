@@ -17,7 +17,7 @@ static const struct file_operations fops = {
 int dev_foo_init(struct dentry *parent)
 {
 	struct dentry *entry = debugfs_create_file(DEV_NAME, DEV_MODE, parent,
-		NULL, &fops);
+						   NULL, &fops);
 
 	dev_foo_len = 0;
 	mutex_init(&dev_foo_lock);
