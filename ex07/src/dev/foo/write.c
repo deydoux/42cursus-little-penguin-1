@@ -4,7 +4,7 @@
 ssize_t dev_foo_write(struct file *filp, const char *buf, size_t len,
 		      loff_t *off)
 {
-	if (*off == 0 && filp->f_flags & O_APPEND)
+	if (*off == 0 && (filp->f_flags & O_APPEND))
 		*off = dev_foo_len;
 
 	mutex_lock(&dev_foo_lock);
